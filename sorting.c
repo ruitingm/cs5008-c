@@ -1,20 +1,32 @@
 #include <stdio.h>
+
+// Swap two ints
 void swap(int* a, int* b){
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
+// Bubble sort
+// Time complexity O(n^2), O(n) for sorted array
+// Space complexity O(1)
 void bubble_sort(int* arr, int arr_size){
+    int num_swap = 0;
     for (int i = 1; i < arr_size; i++){
         for (int j = 0; j < arr_size-i; j++){
             if (arr[j] > arr[j+1]){
+		num_swap++;
                 swap(&arr[j], &arr[j+1]);
             }
         }
+	if (num_swap == 0){
+		break;
+	}
     }
 }
 
+// Helper function for selection sort
+// Find the min index from a given array
 int find_minimun(int* arr, int start, int end){
     int min_val = arr[start];
     int min_idx = start;
@@ -27,6 +39,9 @@ int find_minimun(int* arr, int start, int end){
     return min_idx;
 }
 
+// Selection sort
+// Time complexity O(n^2), O(n^) for nearly sorted array
+// Space complexity O(1)
 void selection_sort(int* arr, int size){
     for (int i = 0; i < size-1; i++){
         int min_idx = find_minimun(arr, i+1, size);
@@ -36,6 +51,9 @@ void selection_sort(int* arr, int size){
     }
 }
 
+// Insertion sort
+// Time complexity O(n^2), O(n) for nearly sorted array
+// Space complexity O(1)
 void insertion_sort(int* arr, int size){
     for (int i = 0; i < size-1; i++){
         for (int j = i+1; j > 0; j--){
@@ -59,6 +77,6 @@ int main() {
     for (int i = 0; i < 10; i++){
         printf("%d ", arr2[i]);
     }
-
+    printf("\n");
     return 0;
 }
